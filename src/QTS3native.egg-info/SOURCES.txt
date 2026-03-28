@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+src/QTS3native/__init__.py
+src/QTS3native/keylistener.py
+src/QTS3native/qtElements.py
+src/QTS3native/rpcs3Hooks.py
+src/QTS3native.egg-info/PKG-INFO
+src/QTS3native.egg-info/SOURCES.txt
+src/QTS3native.egg-info/dependency_links.txt
+src/QTS3native.egg-info/requires.txt
+src/QTS3native.egg-info/top_level.txt

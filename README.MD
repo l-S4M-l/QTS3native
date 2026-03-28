@@ -1,0 +1,67 @@
+# QTS3native
+
+QTS3native is a Python library for building Skate 3 native-style menus and input-driven tooling on top of RPCS3.
+
+It bundles three main parts:
+
+- a PyQt-based menu and UI system
+- an RPCS3 controller and memory hook layer
+- a global keyboard listener for menu input and text entry
+
+The library is aimed at Windows-based Skate 3 tooling where you want a native-feeling in-game style menu driven by controller input, keyboard input, or both.
+
+## Features
+
+- PyQt menu item system with buttons, toggles, sliders, option items, labels, and typing items
+- controller polling thread for reading Skate 3 / RPCS3 input values
+- bind handler for opening or triggering menu actions from controller input
+- global keyboard listener for typing and keyboard-driven interactions
+- internal Skate 3 menu text writer for rendering menu text into RPCS3 memory
+- AOB scan helper for searching memory regions
+
+## Modules
+
+### `qtElements.py`
+
+Contains the main menu and UI logic, including:
+
+- `menu_controller`
+- `sub_menu`
+- menu item classes
+- `bind_handler`
+- controller-to-menu input routing
+
+### `rpcs3Hooks.py`
+
+Contains the RPCS3-side helpers, including:
+
+- `Controller`
+- `ControllerThread`
+- `skate_3_internal_menu_controller`
+
+This module reads controller state from RPCS3 memory, applies deadzones, and exposes the values to the menu system. It also writes menu text into the Skate 3 internal menu text area and includes an AOB scanning helper.
+
+### `keylistener.py`
+
+Contains the global keyboard listener used for keyboard input, text entry, and menu interaction.
+
+## Requirements
+
+- Python 3.10+
+- Windows
+- RPCS3 running
+- Skate 3 running in RPCS3
+- permission to read and write process memory
+
+## Dependencies
+
+- `PyQt5`
+- `pymem`
+- `clipboard`
+- `keyboard`
+
+## Install
+
+```bash
+pip install QTS3native
+```
