@@ -1,20 +1,26 @@
 Metadata-Version: 2.4
 Name: QTS3native
-Version: 0.1.0
+Version: 1.0.1
 Summary: PyQt menu, key listener, and RPCS3 hook helpers for Skate 3 native tooling
-Author: Sam Manning
+Author: S4M
 License: MIT
-Keywords: rpcs3,skate3,pyqt,modding,xinput,pymem
+Project-URL: Homepage, https://github.com/l-S4M-l/QTS3native
+Project-URL: Bug Tracker, https://github.com/l-S4M-l/QTS3native/issues
+Project-URL: Ko-fi, https://ko-fi.com/chillsam2
+Project-URL: demo-project, https://github.com/l-S4M-l/QTS3native-demo-project
+Keywords: rpcs3,skate3,pyqt,modding,pymem
 Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3 :: Only
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: Microsoft :: Windows
 Requires-Python: >=3.10
 Description-Content-Type: text/markdown
+License-File: LICENCE
 Requires-Dist: PyQt5
 Requires-Dist: keyboard
 Requires-Dist: pymem
 Requires-Dist: clipboard
+Dynamic: license-file
 
 # QTS3native
 

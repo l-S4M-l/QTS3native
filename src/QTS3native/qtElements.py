@@ -556,10 +556,10 @@ class menu_controller(QtCore.QObject):
             return self.available_inputs.B
 
         if controller.X == True:
-           return self.X
+           return self.available_inputs.X
 
         if controller.Y == True:
-           return self.Y
+           return self.available_inputs.Y
 
         if controller.LEFT_SHOULDER == True:
            return self.LEFT_SHOULDER

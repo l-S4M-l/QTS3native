@@ -1,3 +1,4 @@
+LICENCE
 README.md
 pyproject.toml
 src/QTS3native/__init__.py

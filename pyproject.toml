@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "QTS3native"
-version = "0.1.1"
+version = "1.0.1"
 description = "PyQt menu, key listener, and RPCS3 hook helpers for Skate 3 native tooling"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -37,3 +37,4 @@ where = ["src"]
 Homepage = "https://github.com/l-S4M-l/QTS3native"
 "Bug Tracker" = "https://github.com/l-S4M-l/QTS3native/issues"
 Ko-fi = "https://ko-fi.com/chillsam2"
+demo-project = "https://github.com/l-S4M-l/QTS3native-demo-project"
