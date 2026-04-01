@@ -69,6 +69,73 @@ class Controller:
         
         return new_state
 
+class rpcs3_offset_values:
+    def __init__(self):
+        self.X_button_value_offset          = 0x33002CD68
+        self.Y_button_value_offset          = 0x33002CD38
+        self.A_button_value_offset          = 0x33002CD58
+        self.B_button_value_offset          = 0x33002CD48
+        self.dpad_up_button_value_offset    = 0x33002CCB8
+        self.dpad_down_button_value_offset  = 0x33002CCD8
+        self.dpad_left_button_value_offset  = 0x33002CCE8
+        self.dpad_right_button_value_offset = 0x33002CCC8
+        self.start_button_value_offset      = 0x33002CCA8
+        self.select_button_value_offset     = 0x33002CC78
+        self.rb_button_value_offset         = 0x33002DB98
+        self.lb_button_value_offset         = 0x33002DB88
+        self.left_stick_button_offset       = 0x33002DAF8
+        self.right_stick_button_offset      = 0x33002DB08
+        
+        self.right_stick_right_offset       = 0x33002DBF8
+        self.right_stick_left_offset        = 0x33002DBE8
+        self.right_stick_down_offset        = 0x33002DC18
+        self.right_stick_up_offset          = 0x33002DC08
+        
+        self.left_stick_right_offset        = 0x33002DC38
+        self.left_stick_left_offset         = 0x33002DC28
+        self.left_stick_down_offset         = 0x33002DC58
+        self.left_stick_up_offset           = 0x33002DC48
+        
+        self.left_trigger_offset            = 0x33002DB68
+        self.right_trigger_offset           = 0x33002DB78
+
+        self.menu_show_byte                 = 0x330010DB3
+        self.menu_text_pointer              = 0x340602EA0
+
+
+    def from_dict(self, offset_dict):
+        if offset_dict["controller_offsets"] != None:
+            self.X_button_value_offset          = offset_dict["controller_offsets"].get("X_button_value_offset", 0x33002CD68)
+            self.Y_button_value_offset          = offset_dict["controller_offsets"].get("Y_button_value_offset", 0x33002CD38)
+            self.A_button_value_offset          = offset_dict["controller_offsets"].get("A_button_value_offset", 0x33002CD58)
+            self.B_button_value_offset          = offset_dict["controller_offsets"].get("B_button_value_offset", 0x33002CD48)
+            self.dpad_up_button_value_offset    = offset_dict["controller_offsets"].get("dpad_up_button_value_offset", 0x33002CCB8)
+            self.dpad_down_button_value_offset  = offset_dict["controller_offsets"].get("dpad_down_button_value_offset", 0x33002CCD8)
+            self.dpad_left_button_value_offset  = offset_dict["controller_offsets"].get("dpad_left_button_value_offset", 0x33002CCE8)
+            self.dpad_right_button_value_offset = offset_dict["controller_offsets"].get("dpad_right_button_value_offset", 0x33002CCC8)
+            self.start_button_value_offset      = offset_dict["controller_offsets"].get("start_button_value_offset", 0x33002CCA8)
+            self.select_button_value_offset     = offset_dict["controller_offsets"].get("select_button_value_offset", 0x33002CC78)
+            self.rb_button_value_offset         = offset_dict["controller_offsets"].get("rb_button_value_offset", 0x33002DB98)
+            self.lb_button_value_offset         = offset_dict["controller_offsets"].get("lb_button_value_offset", 0x33002DB88)
+            self.left_stick_button_offset       = offset_dict["controller_offsets"].get("left_stick_button_offset", 0x33002DAF8)
+            self.right_stick_button_offset      = offset_dict["controller_offsets"].get("right_stick_button_offset", 0x33002DB08)
+
+            self.right_stick_right_offset       = offset_dict["controller_offsets"].get("right_stick_right_offset", 0x33002DBF8)
+            self.right_stick_left_offset        = offset_dict["controller_offsets"].get("right_stick_left_offset", 0x33002DBE8)
+            self.right_stick_down_offset        = offset_dict["controller_offsets"].get("right_stick_down_offset", 0x33002DC18)
+            self.right_stick_up_offset          = offset_dict["controller_offsets"].get("right_stick_up_offset", 0x33002DC08)
+
+            self.left_stick_right_offset        = offset_dict["controller_offsets"].get("left_stick_right_offset", 0x33002DC38)
+            self.left_stick_left_offset         = offset_dict["controller_offsets"].get("left_stick_left_offset", 0x33002DC28)
+            self.left_stick_down_offset         = offset_dict["controller_offsets"].get("left_stick_down_offset", 0x33002DC58)
+            self.left_stick_up_offset           = offset_dict["controller_offsets"].get("left_stick_up_offset", 0x33002DC48)
+
+            self.left_trigger_offset            = offset_dict["controller_offsets"].get("left_trigger_offset", 0x33002DB68)
+            self.right_trigger_offset           = offset_dict["controller_offsets"].get("right_trigger_offset", 0x33002DB78)
+
+            self.menu_show_byte                 = offset_dict["render_offset"].get("menu_show_byte", 0x330010DB3)
+            self.menu_text_pointer              = offset_dict["render_offset"].get("menu_text_pointer", 0x340602EA0)
+
 class ControllerThread(QtCore.QThread):
     state_changed = QtCore.pyqtSignal(object)
     controller = Controller()
@@ -90,33 +157,35 @@ class ControllerThread(QtCore.QThread):
         
         self.rpcs3_process = rpcs3_process
 
-        self.X_button_value_offset          = 0x33002CD68
-        self.Y_button_value_offset          = 0x33002CD38
-        self.A_button_value_offset          = 0x33002CD58
-        self.B_button_value_offset          = 0x33002CD48
-        self.dpad_up_button_value_offset    = 0x33002CCB8
-        self.dpad_down_button_value_offset  = 0x33002CCD8
-        self.dpad_left_button_value_offset  = 0x33002CCE8
-        self.dpad_right_button_value_offset = 0x33002CCC8
-        self.start_button_value_offset      = 0x33002CCA8
-        self.select_button_value_offset     = 0x33002CC78
-        self.rb_button_value_offset         = 0x33002DB98
-        self.lb_button_value_offset         = 0x33002DB88
-        self.left_stick_button_offset       = 0x33002DAF8
-        self.right_stick_button_offset      = 0x33002DB08
+        offsets = rpcs3_offset_values()
 
-        self.right_stick_right_offset       = 0x33002DBF8
-        self.right_stick_left_offset        = 0x33002DBE8
-        self.right_stick_down_offset        = 0x33002DC18
-        self.right_stick_up_offset          = 0x33002DC08
+        self.X_button_value_offset          = offsets.X_button_value_offset
+        self.Y_button_value_offset          = offsets.Y_button_value_offset
+        self.A_button_value_offset          = offsets.A_button_value_offset
+        self.B_button_value_offset          = offsets.B_button_value_offset
+        self.dpad_up_button_value_offset    = offsets.dpad_up_button_value_offset
+        self.dpad_down_button_value_offset  = offsets.dpad_down_button_value_offset
+        self.dpad_left_button_value_offset  = offsets.dpad_left_button_value_offset
+        self.dpad_right_button_value_offset = offsets.dpad_right_button_value_offset
+        self.start_button_value_offset      = offsets.start_button_value_offset
+        self.select_button_value_offset     = offsets.select_button_value_offset
+        self.rb_button_value_offset         = offsets.rb_button_value_offset
+        self.lb_button_value_offset         = offsets.lb_button_value_offset
+        self.left_stick_button_offset       = offsets.left_stick_button_offset
+        self.right_stick_button_offset      = offsets.right_stick_button_offset
+
+        self.right_stick_right_offset       = offsets.right_stick_right_offset
+        self.right_stick_left_offset        = offsets.right_stick_left_offset
+        self.right_stick_down_offset        = offsets.right_stick_down_offset
+        self.right_stick_up_offset          = offsets.right_stick_up_offset
     
-        self.left_stick_right_offset        = 0x33002DC38
-        self.left_stick_left_offset         = 0x33002DC28
-        self.left_stick_down_offset         = 0x33002DC58
-        self.left_stick_up_offset           = 0x33002DC48
+        self.left_stick_right_offset        = offsets.left_stick_right_offset
+        self.left_stick_left_offset         = offsets.left_stick_left_offset
+        self.left_stick_down_offset         = offsets.left_stick_down_offset
+        self.left_stick_up_offset           = offsets.left_stick_up_offset
 
-        self.left_trigger_offset            = 0x33002DB68
-        self.right_trigger_offset           = 0x33002DB78
+        self.left_trigger_offset            = offsets.left_trigger_offset
+        self.right_trigger_offset           = offsets.right_trigger_offset
 
     def apply_analog_deadzone(self, value):
         return value if abs(value) >= self.stick_deadzone else 0
@@ -199,7 +268,6 @@ class ControllerThread(QtCore.QThread):
         self._running = False
         self.wait()
 
-    
 
 class skate_3_internal_menu_controller:
     def __init__(self, rpcs3_process:Pymem=None):
@@ -208,13 +276,15 @@ class skate_3_internal_menu_controller:
         
         name = next(rpcs3_process.list_modules()).name
 
+        offsets = rpcs3_offset_values()
+
         if name != "rpcs3.exe":
             raise pymem_exception.ProcessNotFound("rpcs3.exe")
 
         self.rpcs3_process = rpcs3_process
 
-        self.menu_show_byte = 0x330010DB3
-        self.menu_text_pointer = 0x340602EA0
+        self.menu_show_byte = offsets.menu_show_byte
+        self.menu_text_pointer = offsets.menu_text_pointer
 
         self.default_text = "Wireless controller has been disconnected, please reconnect the wireless controller"
 

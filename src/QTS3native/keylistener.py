@@ -2,6 +2,336 @@ import keyboard
 from PyQt5 import QtCore
 
 
+class Keys:
+    BACKSPACE = "BACKSPACE"
+    TAB = "TAB"
+    ENTER = "ENTER"
+    SHIFT = "SHIFT"
+    CTRL = "CTRL"
+    ALT = "ALT"
+    ALT_GR = "ALT_GR"
+    PAUSE = "PAUSE"
+    CAPSLOCK = "CAPSLOCK"
+    ESCAPE = "ESCAPE"
+    SPACE = "SPACE"
+    PAGE_UP = "PAGE_UP"
+    PAGE_DOWN = "PAGE_DOWN"
+    END = "END"
+    HOME = "HOME"
+    LEFT = "LEFT"
+    UP = "UP"
+    RIGHT = "RIGHT"
+    DOWN = "DOWN"
+    INSERT = "INSERT"
+    DELETE = "DELETE"
+    PRINT_SCREEN = "PRINT_SCREEN"
+    SCROLLLOCK = "SCROLLLOCK"
+    NUMLOCK = "NUMLOCK"
+    LWIN = "LWIN"
+    RWIN = "RWIN"
+    MENU = "MENU"
+    APPS = "APPS"
+    CLEAR = "CLEAR"
+    HELP = "HELP"
+    SELECT = "SELECT"
+    EXECUTE = "EXECUTE"
+    SLEEP = "SLEEP"
+    DECIMAL = "DECIMAL"
+    SEPARATOR = "SEPARATOR"
+    SUBTRACT = "SUBTRACT"
+    ADD = "ADD"
+    MULTIPLY = "MULTIPLY"
+    DIVIDE = "DIVIDE"
+
+    NUMPAD_0 = "NUMPAD_0"
+    NUMPAD_1 = "NUMPAD_1"
+    NUMPAD_2 = "NUMPAD_2"
+    NUMPAD_3 = "NUMPAD_3"
+    NUMPAD_4 = "NUMPAD_4"
+    NUMPAD_5 = "NUMPAD_5"
+    NUMPAD_6 = "NUMPAD_6"
+    NUMPAD_7 = "NUMPAD_7"
+    NUMPAD_8 = "NUMPAD_8"
+    NUMPAD_9 = "NUMPAD_9"
+
+    F1 = "F1"
+    F2 = "F2"
+    F3 = "F3"
+    F4 = "F4"
+    F5 = "F5"
+    F6 = "F6"
+    F7 = "F7"
+    F8 = "F8"
+    F9 = "F9"
+    F10 = "F10"
+    F11 = "F11"
+    F12 = "F12"
+    F13 = "F13"
+    F14 = "F14"
+    F15 = "F15"
+    F16 = "F16"
+    F17 = "F17"
+    F18 = "F18"
+    F19 = "F19"
+    F20 = "F20"
+    F21 = "F21"
+    F22 = "F22"
+    F23 = "F23"
+    F24 = "F24"
+
+    MEDIA_PLAY_PAUSE = "MEDIA_PLAY_PAUSE"
+    MEDIA_STOP = "MEDIA_STOP"
+    MEDIA_NEXT_TRACK = "MEDIA_NEXT_TRACK"
+    MEDIA_PREV_TRACK = "MEDIA_PREV_TRACK"
+    VOLUME_UP = "VOLUME_UP"
+    VOLUME_DOWN = "VOLUME_DOWN"
+    VOLUME_MUTE = "VOLUME_MUTE"
+    BROWSER_BACK = "BROWSER_BACK"
+    BROWSER_FORWARD = "BROWSER_FORWARD"
+    BROWSER_REFRESH = "BROWSER_REFRESH"
+    BROWSER_STOP = "BROWSER_STOP"
+    BROWSER_SEARCH = "BROWSER_SEARCH"
+    BROWSER_FAVORITES = "BROWSER_FAVORITES"
+    BROWSER_HOME = "BROWSER_HOME"
+    LAUNCH_MAIL = "LAUNCH_MAIL"
+    LAUNCH_MEDIA_SELECT = "LAUNCH_MEDIA_SELECT"
+    LAUNCH_APP1 = "LAUNCH_APP1"
+    LAUNCH_APP2 = "LAUNCH_APP2"
+
+    A = "a"
+    B = "b"
+    C = "c"
+    D = "d"
+    E = "e"
+    F = "f"
+    G = "g"
+    H = "h"
+    I = "i"
+    J = "j"
+    K = "k"
+    L = "l"
+    M = "m"
+    N = "n"
+    O = "o"
+    P = "p"
+    Q = "q"
+    R = "r"
+    S = "s"
+    T = "t"
+    U = "u"
+    V = "v"
+    W = "w"
+    X = "x"
+    Y = "y"
+    Z = "z"
+
+    ZERO = "0"
+    ONE = "1"
+    TWO = "2"
+    THREE = "3"
+    FOUR = "4"
+    FIVE = "5"
+    SIX = "6"
+    SEVEN = "7"
+    EIGHT = "8"
+    NINE = "9"
+
+    MINUS = "-"
+    EQUALS = "="
+    LEFT_BRACKET = "["
+    RIGHT_BRACKET = "]"
+    BACKSLASH = "\\"
+    SEMICOLON = ";"
+    APOSTROPHE = "'"
+    COMMA = ","
+    PERIOD = "."
+    FORWARD_SLASH = "/"
+    GRAVE = "`"
+
+    EXCLAMATION = "!"
+    AT = "@"
+    HASH = "#"
+    DOLLAR = "$"
+    PERCENT = "%"
+    CARET = "^"
+    AMPERSAND = "&"
+    ASTERISK = "*"
+    LEFT_PAREN = "("
+    RIGHT_PAREN = ")"
+    UNDERSCORE = "_"
+    PLUS = "+"
+    LEFT_BRACE = "{"
+    RIGHT_BRACE = "}"
+    PIPE = "|"
+    COLON = ":"
+    QUOTE = '"'
+    LESS_THAN = "<"
+    GREATER_THAN = ">"
+    QUESTION_MARK = "?"
+    TILDE = "~"
+
+    ALL = {
+        BACKSPACE,
+        TAB,
+        ENTER,
+        SHIFT,
+        CTRL,
+        ALT,
+        ALT_GR,
+        PAUSE,
+        CAPSLOCK,
+        ESCAPE,
+        SPACE,
+        PAGE_UP,
+        PAGE_DOWN,
+        END,
+        HOME,
+        LEFT,
+        UP,
+        RIGHT,
+        DOWN,
+        INSERT,
+        DELETE,
+        PRINT_SCREEN,
+        SCROLLLOCK,
+        NUMLOCK,
+        LWIN,
+        RWIN,
+        MENU,
+        APPS,
+        CLEAR,
+        HELP,
+        SELECT,
+        EXECUTE,
+        SLEEP,
+        DECIMAL,
+        SEPARATOR,
+        SUBTRACT,
+        ADD,
+        MULTIPLY,
+        DIVIDE,
+        NUMPAD_0,
+        NUMPAD_1,
+        NUMPAD_2,
+        NUMPAD_3,
+        NUMPAD_4,
+        NUMPAD_5,
+        NUMPAD_6,
+        NUMPAD_7,
+        NUMPAD_8,
+        NUMPAD_9,
+        F1,
+        F2,
+        F3,
+        F4,
+        F5,
+        F6,
+        F7,
+        F8,
+        F9,
+        F10,
+        F11,
+        F12,
+        F13,
+        F14,
+        F15,
+        F16,
+        F17,
+        F18,
+        F19,
+        F20,
+        F21,
+        F22,
+        F23,
+        F24,
+        MEDIA_PLAY_PAUSE,
+        MEDIA_STOP,
+        MEDIA_NEXT_TRACK,
+        MEDIA_PREV_TRACK,
+        VOLUME_UP,
+        VOLUME_DOWN,
+        VOLUME_MUTE,
+        BROWSER_BACK,
+        BROWSER_FORWARD,
+        BROWSER_REFRESH,
+        BROWSER_STOP,
+        BROWSER_SEARCH,
+        BROWSER_FAVORITES,
+        BROWSER_HOME,
+        LAUNCH_MAIL,
+        LAUNCH_MEDIA_SELECT,
+        LAUNCH_APP1,
+        LAUNCH_APP2,
+        A,
+        B,
+        C,
+        D,
+        E,
+        F,
+        G,
+        H,
+        I,
+        J,
+        K,
+        L,
+        M,
+        N,
+        O,
+        P,
+        Q,
+        R,
+        S,
+        T,
+        U,
+        V,
+        W,
+        X,
+        Y,
+        Z,
+        ZERO,
+        ONE,
+        TWO,
+        THREE,
+        FOUR,
+        FIVE,
+        SIX,
+        SEVEN,
+        EIGHT,
+        NINE,
+        MINUS,
+        EQUALS,
+        LEFT_BRACKET,
+        RIGHT_BRACKET,
+        BACKSLASH,
+        SEMICOLON,
+        APOSTROPHE,
+        COMMA,
+        PERIOD,
+        FORWARD_SLASH,
+        GRAVE,
+        EXCLAMATION,
+        AT,
+        HASH,
+        DOLLAR,
+        PERCENT,
+        CARET,
+        AMPERSAND,
+        ASTERISK,
+        LEFT_PAREN,
+        RIGHT_PAREN,
+        UNDERSCORE,
+        PLUS,
+        LEFT_BRACE,
+        RIGHT_BRACE,
+        PIPE,
+        COLON,
+        QUOTE,
+        LESS_THAN,
+        GREATER_THAN,
+        QUESTION_MARK,
+        TILDE,
+    }
+
 class GlobalKeyboardListener(QtCore.QThread):
     keys_pressed = QtCore.pyqtSignal(tuple)
 
@@ -176,6 +506,7 @@ class GlobalKeyboardListener(QtCore.QThread):
         self._pressed_keys = set()
         self._hook = None
         self._running = False
+        self.key_polling_rate = 10
 
     def normalise_key_name(self, key_name):
         if key_name is None:
@@ -225,7 +556,7 @@ class GlobalKeyboardListener(QtCore.QThread):
         self._hook = keyboard.hook(self._keyboard_callback)
 
         while self._running:
-            self.msleep(10)
+            self.msleep(self.key_polling_rate)
 
         if self._hook is not None:
             keyboard.unhook(self._hook)
@@ -234,3 +565,5 @@ class GlobalKeyboardListener(QtCore.QThread):
     def stop(self):
         self._running = False
         self.wait()
+
+

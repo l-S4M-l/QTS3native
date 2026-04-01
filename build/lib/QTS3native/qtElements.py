@@ -1,7 +1,6 @@
 from PyQt5 import QtWidgets, QtCore
 from .rpcs3Hooks import skate_3_internal_menu_controller, ControllerThread, Controller
-from .keylistener import GlobalKeyboardListener
-from collections import deque
+from .keylistener import GlobalKeyboardListener, Keys
 from pymem import Pymem
 import sys
 import time
@@ -27,17 +26,33 @@ class bind_vals:
     left_stick_click       = "left_stick_click"
     right_stick_click      = "right_stick_click"
 
+class input_types:
+    keyboard = "keyboard"
+    controller = "controller"
+
 class bind_handler(QtCore.QObject):
     bind_hit = QtCore.pyqtSignal()
 
-    def __init__(self, controller_thread:ControllerThread, parent=None):
+    def __init__(self, controller_thread:ControllerThread, parent=None, input_type:input_types=input_types.controller):
         super().__init__(parent)
         if controller_thread == None:
             raise ValueError("Controller thread doesnt exists.")
 
         self.controller = controller_thread
+        self.input_type = input_type
+        self.key_listener:GlobalKeyboardListener = GlobalKeyboardListener()
 
-        self.controller.state_changed.connect(self.check_bind)
+
+        self.key_listener.key_polling_rate = 30
+
+        if input_type == input_types.keyboard:
+            self.key_listener.keys_pressed.connect(self.check_bind)
+
+        if input_type == input_types.controller:
+            self.controller.state_changed.connect(self.check_bind)
+
+        self.key_listener.start()
+
         self.binds = bind_vals()
         
         self.bind = []
@@ -69,13 +84,37 @@ class bind_handler(QtCore.QObject):
 
         the_vars = list(vars(bind_vals).values())
 
+        keys_vars = list(vars(Keys).values())
+
         for i in bind:
-            if i not in the_vars:
+            if i not in the_vars and i not in keys_vars:
                 raise ValueError("bind key is not part of binds")
         
         self.bind = bind
 
-    def check_bind(self,controller:Controller):
+    def check_bind(self, input):
+        if self.input_type == input_types.controller:
+            self.check_controller_bind(input)
+
+        elif self.input_type == input_types.keyboard:
+            self.check_key_input(input)
+        
+    def check_key_input(self, keys:tuple):
+        bind_hit = True
+
+        if self.bind_hit == []:
+            bind_hit = False
+        
+        for bind_key in self.bind:
+            if bind_key not in keys:
+                bind_hit = False
+
+        
+        if bind_hit == True:
+            self.bind_hit.emit()
+
+
+    def check_controller_bind(self,controller:Controller):
         bind_hit = True
 
         if self.bind == []:
@@ -105,6 +144,8 @@ class bind_handler(QtCore.QObject):
 
         if bind_hit == True:
             self.bind_hit.emit()
+
+
 
 class menu_inputs:
     UP             = "UP"
@@ -487,7 +528,7 @@ class sub_menu(QtCore.QObject):
             self._selected_item.key_pressed(keys)
 
 class menu_controller(QtCore.QObject):
-    def __init__(self, parent = None):
+    def __init__(self, parent = None, input_type:input_types=input_types.controller):
         super().__init__(parent)
         self._menu:sub_menu = None
 
@@ -496,7 +537,7 @@ class menu_controller(QtCore.QObject):
         self.controller = ControllerThread(rpcs3_process=process)
         self.controller.state_changed.connect(self.controller_input_enter)
         self.controller.start()
-        self.bind_handler = bind_handler(controller_thread=self.controller)
+        self.bind_handler = bind_handler(controller_thread=self.controller, input_type = input_type)
         self.bind_handler.bind_hit.connect(self.bind_hit)
         self.key_listener = GlobalKeyboardListener()
         self.key_listener.keys_pressed.connect(self.key_pressed)
@@ -556,10 +597,10 @@ class menu_controller(QtCore.QObject):
             return self.available_inputs.B
 
         if controller.X == True:
-           return self.X
+           return self.available_inputs.X
 
         if controller.Y == True:
-           return self.Y
+           return self.available_inputs.Y
 
         if controller.LEFT_SHOULDER == True:
            return self.LEFT_SHOULDER

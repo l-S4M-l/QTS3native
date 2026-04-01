@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: QTS3native
-Version: 1.0.1
+Version: 1.1.1
 Summary: PyQt menu, key listener, and RPCS3 hook helpers for Skate 3 native tooling
 Author: S4M
 License: MIT
