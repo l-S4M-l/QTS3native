@@ -1,4 +1,0 @@
-PyQt5
-keyboard
-pymem
-clipboard

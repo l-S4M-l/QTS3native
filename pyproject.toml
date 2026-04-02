@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "QTS3native"
-version = "1.1.2"
+version = "1.2.2"
 description = "PyQt menu, key listener, and RPCS3 hook helpers for Skate 3 native tooling"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -24,7 +24,9 @@ dependencies = [
   "PyQt5",
   "keyboard",
   "pymem",
-  "clipboard"
+  "clipboard",
+  "PyGetWindow", 
+  "pywin32"
 ]
 
 [tool.setuptools]
