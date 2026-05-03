@@ -47,9 +47,22 @@ class _OutlinedLabel(QtWidgets.QLabel):
 
 
 class log_window(QtWidgets.QWidget):
+    def __init__(
+        self,
+        parent: QtWidgets.QWidget | None = None,
+        flags: QtCore.Qt.WindowFlags = QtCore.Qt.WindowFlags(),
+        width: int = 289,
+        height: int = 500,
+    ):
+        super().__init__(parent, flags)
+
+        self._width = width
+        self._height = height
+
     def setupUi(self):
         self.x_offset = 10
         self.y_offset = 20
+        
 
         self.setWindowFlags(
             QtCore.Qt.Window
@@ -63,10 +76,10 @@ class log_window(QtWidgets.QWidget):
         self.current_text = ""
 
         self.setObjectName("Form")
-        self.resize(289, 500)
+        self.resize(self._width, self._height)
 
         self.label = _OutlinedLabel("", self)
-        self.label.setGeometry(QtCore.QRect(0, 0, 261, 500))
+        self.label.setGeometry(QtCore.QRect(0, 0, self._width, self._height))
         self.label.setStyleSheet(
             'background-color: transparent; font: 63 10pt "Bahnschrift SemiBold";'
         )
